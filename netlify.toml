@@ -1,13 +1,13 @@
 [build]
-  command = "npm run build"
+  command = "npm run build && cd eliaclient && sanity build && cd .."
   publish = "dist"
-
-[[redirects]]
-  from = "/studio/*"
-  to = "/studio/index.html"
-  status = 200
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
+  status = 200
+
+  [[redirects]]
+  from = "/studio/*"
+  to = "/studio/index.html"
   status = 200
