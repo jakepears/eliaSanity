@@ -1,5 +1,5 @@
 [build]
-  command = "git config --global submodule.recurse false && npm run build && cd eliaclient && sanity build && cd .."
+   command = "npm run build:netlify"
   publish = "dist"
 
 [[redirects]]
