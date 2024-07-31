@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build && cd eliaclient && sanity build && cd .."
+  command = "git config --global submodule.recurse false && npm run build && cd eliaclient && sanity build && cd .."
   publish = "dist"
 
 [[redirects]]
@@ -11,3 +11,6 @@
   from = "/studio/*"
   to = "/studio/index.html"
   status = 200
+
+  [build.environment]
+  NETLIFY_USE_GITMODULES = "false"
