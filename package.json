@@ -8,8 +8,8 @@
 		"build": "vite build && npm run build-studio",
 		"lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview",
-		"studio": "cd studio && sanity start",
-		"build-studio": "cd studio && sanity build"
+		"studio": "cd eliaclient && sanity start",
+		"build-studio": "cd eliaclient && sanity build"
 	},
 	"dependencies": {
 		"@gsap/react": "^2.1.1",
