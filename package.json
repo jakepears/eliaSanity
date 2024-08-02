@@ -9,7 +9,7 @@
 		"lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview",
 		"studio": "cd eliaclient && sanity start",
-		"build:netlify": "npm run build && cd eliaclient && ./node_modules/.bin/sanity build && cd ..",
+		"build:netlify": "npm run build && cd eliaclient && npm install && ./node_modules/.bin/sanity build && cd ..",
 		"build-studio": "cd eliaclient && sanity build"
 	},
 	"dependencies": {
