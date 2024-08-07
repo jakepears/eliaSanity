@@ -1,8 +1,8 @@
 /** @format */
 
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { client } from '../../sanityClient';
+import { client, urlFor } from '../../sanityClient';
 import transition from '../transition';
 import './Project.css';
 
@@ -70,7 +70,7 @@ const Project = () => {
 
 			<section className='project-hero' data-scroll-section>
 				<div className='project-hero-img'>
-					<img src={project.mainImage} alt={project.title} />
+					<img src={urlFor(project.mainImage).url()} alt={project.title} />
 				</div>
 			</section>
 
@@ -91,7 +91,7 @@ const Project = () => {
 			{project.images.map((image, index) => (
 				<section key={index} className='project-img-full' data-scroll-section>
 					<div className='project-img-full-wrapper'>
-						<img src={image} alt={`Project image ${index + 1}`} />
+						<img src={urlFor(image).url()} alt={`Project image ${index + 1}`} />
 					</div>
 				</section>
 			))}
@@ -103,7 +103,7 @@ const Project = () => {
 					))}
 				</div>
 				<div className='project-info-img'>
-					<img src={project.detailImage} alt='Project detail' />
+					<img src={urlFor(project.detailImage).url()} alt='Project detail' />
 				</div>
 			</section>
 

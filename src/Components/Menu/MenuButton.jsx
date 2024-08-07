@@ -1,9 +1,7 @@
 /** @format */
 
-import './MenuButton.css';
 import PropTypes from 'prop-types';
-
-// Add prop validation
+import './MenuButton.css';
 
 const MenuButton = ({ onClick, isOpen }) => {
 	return (
@@ -11,12 +9,14 @@ const MenuButton = ({ onClick, isOpen }) => {
 			className={`menu-button ${isOpen ? 'open' : ''}`}
 			onClick={onClick}
 			aria-label='Toggle menu'>
-			<span className='menu-button-line'></span>
+			<div className='menu-button-line'></div>
 		</button>
 	);
 };
+
 MenuButton.propTypes = {
 	onClick: PropTypes.func.isRequired,
 	isOpen: PropTypes.bool.isRequired,
 };
+
 export default MenuButton;

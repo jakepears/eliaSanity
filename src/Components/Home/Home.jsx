@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Marquee from 'react-fast-marquee';
-import { client } from '../../sanityClient';
+import { client, urlFor } from '../../sanityClient';
 import transition from '../transition';
 import './Home.css';
 
@@ -83,7 +83,7 @@ const Home = () => {
 			id='scroll-container'>
 			<section className='hero-img' data-scroll-section>
 				<div className='hero-img-container'>
-					<img src={homeData.bannerImage} alt='Banner' />
+					<img src={urlFor(homeData.bannerImage).url()} alt='Banner' />
 				</div>
 				<div className='hero-img-copy'>
 					<div className='hero-img-copy-h1'>
@@ -105,7 +105,7 @@ const Home = () => {
 								<div
 									className={`project-img project-img-${index + 1}`}
 									style={{
-										backgroundImage: `url(${project.mainImage})`,
+										backgroundImage: `url(${urlFor(project.mainImage).url()})`,
 									}}></div>
 								<div className='project-name'>
 									<p>{project.title} &#8599;</p>
@@ -136,7 +136,7 @@ const Home = () => {
 			</section>
 			<section className='feature-img' data-scroll-section>
 				<div className='feature-img-container'>
-					<img src={homeData.featureImage} alt='Feature' />
+					<img src={urlFor(homeData.featureImage).url()} alt='Feature' />
 				</div>
 			</section>
 			<section className='logos' data-scroll-section>
@@ -144,7 +144,7 @@ const Home = () => {
 					<div className='client-logos'>
 						{clients.map((client) => (
 							<div className='client-logo' key={client._id}>
-								<img src={client.logo} alt={client.name} />
+								<img src={urlFor(client.logo).url()} alt={client.name} />
 							</div>
 						))}
 					</div>

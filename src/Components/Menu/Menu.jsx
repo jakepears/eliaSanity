@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { client } from '../../sanityClient';
+import { client, urlFor } from '../../sanityClient';
 import PropTypes from 'prop-types';
 
 import './Menu.css';
@@ -79,35 +79,43 @@ const Menu = ({ isOpen, onToggle }) => {
 			const imgContainer = document.createElement('div');
 			imgContainer.className = 'bind-new-img';
 			const img = document.createElement('img');
-			img.src = menuData.menuLinks[index].previewImage.asset.url;
+			img.src = urlFor(menuData.menuLinks[index].previewImage).url();
 			img.alt = '';
 			imgContainer.appendChild(img);
 			previewContainerRef.current.appendChild(imgContainer);
 
-			gsap.to(imgContainer, {
-				top: '0%',
-				left: '0%',
-				rotate: 0,
-				duration: 1.25,
-				ease: 'power4.out',
-				onComplete: () => {
-					gsap.delayedCall(2, () => {
-						const allImgContainers =
-							previewContainerRef.current?.querySelectorAll('.bind-new-img');
-						if (allImgContainers && allImgContainers.length > 1) {
-							Array.from(allImgContainers)
-								.slice(0, -1)
-								.forEach((container) => {
-									gsap.to(container, {
-										opacity: 0,
-										duration: 0.5,
-										onComplete: () => container.remove(),
-									});
-								});
-						}
-					});
+			gsap.fromTo(
+				imgContainer,
+				{
+					top: '100%',
+					left: '50%',
+					rotation: -45,
 				},
-			});
+				{
+					top: '0%',
+					left: '0%',
+					rotation: 0,
+					duration: 1.25,
+					ease: 'power4.out',
+					onComplete: () => {
+						gsap.delayedCall(2, () => {
+							const allImgContainers =
+								previewContainerRef.current?.querySelectorAll('.bind-new-img');
+							if (allImgContainers && allImgContainers.length > 1) {
+								Array.from(allImgContainers)
+									.slice(0, -1)
+									.forEach((container) => {
+										gsap.to(container, {
+											opacity: 0,
+											duration: 0.5,
+											onComplete: () => container.remove(),
+										});
+									});
+							}
+						});
+					},
+				}
+			);
 		}
 	};
 
@@ -129,7 +137,7 @@ const Menu = ({ isOpen, onToggle }) => {
 			<div className='menu'>
 				<div ref={previewContainerRef} className='preview-container'>
 					<img
-						src={menuData.defaultPreviewImage.asset.url}
+						src={urlFor(menuData.defaultPreviewImage).url()}
 						alt=''
 						className='default-preview'
 					/>

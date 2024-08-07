@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState, useEffect, useRef } from 'react';
-import { client } from '../../sanityClient';
+import { client, urlFor } from '../../sanityClient';
 import transition from '../transition';
 import './About.css';
 
@@ -46,7 +46,7 @@ const About = () => {
 			id='scroll-container'>
 			<section className='hero-img' data-scroll-section>
 				<div className='hero-img-container'>
-					<img src={aboutData.heroImage} alt='About Hero' />
+					<img src={urlFor(aboutData.heroImage).url()} alt='About Hero' />
 				</div>
 			</section>
 
@@ -97,7 +97,7 @@ const About = () => {
 
 			<section className='hero-img' data-scroll-section>
 				<div className='hero-img-container'>
-					<img src={aboutData.featureImage} alt='About Feature' />
+					<img src={urlFor(aboutData.featureImage).url()} alt='About Feature' />
 				</div>
 			</section>
 
@@ -108,7 +108,7 @@ const About = () => {
 				<div className='more-clients-logos'>
 					{aboutData.clientLogos.map((logo, index) => (
 						<div key={index} className='more-clients-logo'>
-							<img src={logo} alt={`Client Logo ${index + 1}`} />
+							<img src={urlFor(logo).url()} alt={`Client Logo ${index + 1}`} />
 						</div>
 					))}
 				</div>
@@ -116,7 +116,7 @@ const About = () => {
 
 			<section className='about-us office' data-scroll-section>
 				<div className='hero-img-container'>
-					<img src={aboutData.officeImage} alt='Office' />
+					<img src={urlFor(aboutData.officeImage).url()} alt='Office' />
 				</div>
 				<div className='about-us-copy'>
 					<div className='about-us-copy-p'>
